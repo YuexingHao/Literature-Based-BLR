@@ -6,6 +6,16 @@
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
+/* Header/Logo Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #025f3c;
+  color: white;
+  font-size: 20px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -94,13 +104,17 @@
 </head>
 <body>
 
-<h1><center>Literature-based Clinical Decision Web Application</center></h1>
+<div class="header">
+  <h1>Literature-based Clinical Decision Support System</h1>
+</div>
+<br></br>
 
-<center>
-<button class="button">Case 1</button>
+  <nav am-layout="horizontal"><center>
 
-<button class="button">Case 2</button>
-</center>
+  <button class="button">Case 1</button>
+  <button class="button">Case 2</button>
+  </center></nav>
+
 <br></br>
 
 <div class="row">
@@ -111,7 +125,7 @@
 
   <div class="column middle" style="background-color:#bbb;">
     <h2>AI Predictions by DSTs</h2>
-    <p>The recommended treatment predicted by our DST is "<b style="color:red;">intravenous immunoglobulins (IVIG)</b>"</p>
+    <p>The recommended treatment predicted by our DST is "<b style="color:darkgreen;">intravenous immunoglobulins (IVIG)</b>"</p>
   </div>
 
   <div class="column right" style="background-color:#ccc;">
