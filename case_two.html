@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+/* Header/Logo Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #025f3c;
+  color: white;
+  font-size: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 1300px; /* Should be removed. Only for demonstration */
+}
+
+.left, .middle {
+  width: 25%;
+}
+
+.right {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.button {
+  position: relative;
+  background-color: #04AA6D;
+  border: none;
+  font-size: 28px;
+  color: #FFFFFF;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+#tables {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tables td, #tables th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tables tr:nth-child(even){background-color: #f2f2f2;}
+
+#tables tr:hover {background-color: #ddd;}
+
+#tables th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Literature-based Clinical Decision Support System</h1>
+  <h3>Case Two</h3>
+</div>
+<br></br>
+
+  <nav am-layout="horizontal"><center>
+  <a href="about.html" title="About Page"><button class="button">About</button></a>
+  <a href="case_one.html" title="Case One Page"><button class="button">Case 1</button></a>
+  <a href="case_two.html" title="Case Two Page"><button class="button">Case 2</button></a>
+  </center></nav>
+
+<br></br>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+    <h2>Patient Variables</h2>
+    <p>A 55-year-old woman presents seeking treatment with clear symptoms of a major depressive episode. This is her third such episode. She reports that sertraline worked well for her the first time. The second time, however, it made her dizzy and she had to discontinue; she eventually responded well to bupropion. She expresses a preference for medication over psychotherapy but is not sure which one to try. She tries bupropion and it worked last time, but in exploring her current symptoms it is clear that she has prominent feelings of somatic and psychological anxiety that she did not experience last time. Overall, her condition is less acute, and you recall a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.</p>
+  </div>
+
+  <div class="column middle" style="background-color:#bbb;">
+    <h2>AI Predictions by DSTs</h2>
+    <p>The recommended treatment predicted by our DST is "<b style="color:darkgreen;">intravenous immunoglobulins (IVIG)</b>"</p>
+  </div>
+
+  <div class="column right" style="background-color:#ccc;">
+    <h2>Literature Evidence</h2>
+    <p>Below table displays the matchable literatures from PubMed filtered by P (Patient Groups). The other two columns display P (Patient Group) and I (Interventions).</p>
+    <table id="tables">
+  <tr>
+    <th>Literature Names</th>
+    <th>Patient Group</th>
+    <th>Interventions</th>
+  </tr>
+  <tr>
+    <td>Stanford Type A Acute Aortic Dissection with Persistent Left Superior Vena Cava in a Turner Syndrome Patient:Report of a Case</td>
+    <td>The patient population of focus is people with Turner syndrome.</td>
+    <td>Unknown</td>
+  </tr>
+  <tr>
+    <td>Ultrasound-Guided Caudal Epidural Steroid Injection for Back Pain: A Case Report of Successful Emergency Department Management of Radicular Low Back Pain Symptoms.</td>
+    <td>The patient population of focus is people with chronic lumbar radiculopathy who present to the ED with acute low back and right lower-extremity pain.</td>
+    <td>Unknown</td>
+  </tr>
+  <tr>
+    <td>A systematic review and meta-analysis of the effectiveness and adverse events of gabapentin and pregabalin for sciatica pain.</td>
+    <td>The patient population of focus is adults with acute sciatica for a minimum of 1 week and a maximum of 1 year (at least moderate pain).</td>
+    <td>Patients were randomized to receive pregabalin, gabapentin, or placebo.</td>
+  </tr>
+  <tr>
+    <td>Failure of IVIG in steroid-responsive autoimmune glial fibrillary acidic protein astrocytopathy: A case report.</td>
+    <td>Our 45-year-old Asian female presented to the emergency department with an acute onset low-grade fever and back pain associated with headaches, intermittent confusion, vision changes, and hand tremors. A review of systems identified no inciting factors. Past medical history was significant only for chronic Hepatitis B without significant viral load. Neurological exam was significant for decreased visual acuity, high-frequency hand tremor, and gait imbalance.</td>
+    <td>Patients were randomized to receive either high-dose steroids or intravenous immunoglobulins (IVIG) as their first line of treatment.</td>
+  </tr>
+  </tr>
+</table>
+  </div>
+</div>
+
+</body>
+</html>
