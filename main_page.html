@@ -1,136 +1,110 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+<link rel="stylesheet" href="style.css">
 
-/* Header/Logo Title */
-.header {
-  padding: 130px;
-  text-align: center;
-  background: #025f3c;
-  color: white;
-  font-size: 25px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-  height: 1300px; /* Should be removed. Only for demonstration */
-}
-
-.left, .middle {
-  width: 25%;
-}
-
-.right {
-  width: 50%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.button {
-  position: relative;
-  background-color: #04AA6D;
-  border: none;
-  font-size: 28px;
-  color: #FFFFFF;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.button:after {
-  content: "";
-  background: #90EE90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-.button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-#tables {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#tables td, #tables th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#tables tr:nth-child(even){background-color: #f2f2f2;}
-
-#tables tr:hover {background-color: #ddd;}
-
-#tables th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-
-.body {
-  padding: 5px;
-  padding-left: 300px;
-  padding-right: 300px;
-  text-align: center;
-  background: darkseagreen; 
-  color: ghostwhite;
-  font-size: 20px;
-}
-</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body id="mainbody">
 
-<div class="header">
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_two.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
+
+  <div class="topnav">
+  <a><span onclick="openNav()">&#9776; Menu</span></a>
+  <a class="active" href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_three.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
+
+<div class="mainheader">
   <h1>Literature-based Clinical Decision Support System</h1>
+  <h1>Home Page</h1>
 </div>
 <br></br>
+
+<br></br>
+<div class="mainbody">
+
+
 
   <nav am-layout="horizontal"><center>
-  <a href="main_page.html" title="About Page"><button class="button">About</button></a>
-  <a href="case_one.html" title="Case One Page"><button class="button">Case 1</button></a>
-  <a href="case_two.html" title="Case Two Page"><button class="button">Case 2</button></a>
-  </center></nav>
+  <h4>
+  Welcome to the web app for the Literature-based Clinical Decision Support System! In this web page, we create a prototype for physicians to provide literature support for their decision-making progress.
+  </h4>
+  </center>
+</nav>
 
-<br></br>
-<div class="body">
-<p>
-Welcome to the web app for the Literature-based Clinical Decision Support System! In this web page, we create a prototype for physicians to provide literature support for their decision-making progress.
-</p>
+<h3><center>Field 1: Palliative Care</center></h3>
+<a href="case_one.html" title="Case One Page"><button class="button button1">Case One</button></a>
+<a href="case_one.html" title="Case One Page"><button class="button button1">Case Two</button></a>
+<a href="case_one.html" title="Case One Page"><button class="button button1">Case Three</button></a>
+
+<h3><center>Field 2: Mental Health</center></h3>
+
+<center>
+<div class="card">
+  <div class="container">
+    <h4><b>Case One DST: Aifred Health</b></h4> 
+    <p>Keywords: major depressive episode; somatic and psychological anxiety</p> 
+  <a href="case_two.html" title="Case Two Page"><button class="button button2">Case One</button></a>
+  </div>
 </div>
 
+<div class="card">
+  <div class="container">
+    <h4><b>Case Two DST: Spring Health</b></h4> 
+    <p>Keywords: major depressive episode; somatic and psychological anxiety</p> 
+<a href="case_two.html" title="Case Two Page"><button class="button button2">Case Two</button></a>
+  </div>
+</div>
+</center>
+
+</div>
+<script>
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
 </body>
+
+
 </html>
