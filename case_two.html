@@ -1,108 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+<link rel="stylesheet" href="style.css">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-/* Header/Logo Title */
-.header {
-  padding: 5px;
-  text-align: center;
-  background: #025f3c;
-  color: white;
-  font-size: 20px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-  height: 1300px; /* Should be removed. Only for demonstration */
-}
-
-.left, .middle {
-  width: 25%;
-}
-
-.right {
-  width: 50%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.button {
-  position: relative;
-  background-color: #04AA6D;
-  border: none;
-  font-size: 28px;
-  color: #FFFFFF;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.button:after {
-  content: "";
-  background: #90EE90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-.button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-#tables {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#tables td, #tables th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#tables tr:nth-child(even){background-color: #f2f2f2;}
-
-#tables tr:hover {background-color: #ddd;}
-
-#tables th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
 </head>
 <body>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_two.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
+
+  <div class="topnav">
+  <a><span onclick="openNav()">&#9776; Menu</span></a>
+  <a class="active" href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_two.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
 
 <div class="header">
   <h1>Literature-based Clinical Decision Support System</h1>
@@ -110,35 +37,56 @@
 </div>
 <br></br>
 
-  <nav am-layout="horizontal"><center>
-  <a href="main_page.html" title="About Page"><button class="button">About</button></a>
-  <a href="case_one.html" title="Case One Page"><button class="button">Case 1</button></a>
-  <a href="case_two.html" title="Case Two Page"><button class="button">Case 2</button></a>
-  </center></nav>
-
-<br></br>
-
 <div class="row">
   <div class="column left" style="background-color:#aaa;">
-    <h2>Patient Variables</h2>
-    <p>A 55-year-old woman presents seeking treatment with clear symptoms of a major depressive episode. This is her third such episode. She reports that sertraline worked well for her the first time. The second time, however, it made her dizzy and she had to discontinue; she eventually responded well to bupropion. She expresses a preference for medication over psychotherapy but is not sure which one to try. She tries bupropion and it worked last time, but in exploring her current symptoms it is clear that she has prominent feelings of somatic and psychological anxiety that she did not experience last time. Overall, her condition is less acute, and you recall a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.<br><br>
+    <h2><center>Patient Variables</center></h2>
+    <table id="tables">
+  <tr>
+    <th>Labels</th>
+    <th>Conditions</th>
+  </tr>
+  <tr>
+    <td>One sentence Summary</td>
+    <td>The patient is experiencing a major depressive episode and has prominent feelings of somatic and psychological anxiety.</td>
+  </tr>
+  <tr>
+    <td>Patient Group (P)</td>
+    <td>A 55-year-old woman</td>
+  </tr>
+  <tr>
+    <td>Interventions (I)</td>
+    <td>Has prominent feelings of somatic and psychological anxiety that she did not experienc last time</td>
+  </tr>
+  <tr>
+    <td>Comparator (C)</td>
+    <td>a major depressive episode</td>
+  </tr>
+  <tr>
+    <td>Outcomes (O)</td>
+    <td>Her condition is less acute, and a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.</td>
+  </tr>
+</table>
+<h3>The full description of case one</h3>
+<p>A 55-year-old woman presents seeking treatment with clear symptoms of a major depressive episode. This is her third such episode. She reports that sertraline worked well for her the first time. The second time, however, it made her dizzy and she had to discontinue; she eventually responded well <span id="dots">...</span><span id="more"> to bupropion. She expresses a preference for medication over psychotherapy but is not sure which one to try. She tries bupropion and it worked last time, but in exploring her current symptoms it is clear that she has prominent feelings of somatic and psychological anxiety that she did not experience last time. Overall, her condition is less acute, and you recall a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.<br><br>
 
-    Case study Reference: Chekroud, A. M., Lane, C. E., & Ross, D. A. (2017). Computational Psychiatry: Embracing Uncertainty and Focusing on Individuals, Not Averages. Biological psychiatry, 82(6), e45–e47. https://doi.org/10.1016/j.biopsych.2017.07.011</p>
+Case study Reference: Chekroud, A. M., Lane, C. E., & Ross, D. A. (2017). Computational Psychiatry: Embracing Uncertainty and Focusing on Individuals, Not Averages. Biological psychiatry, 82(6), e45–e47. https://doi.org/10.1016/j.biopsych.2017.07.011</span></p>
+<button onclick="myFunction()" id="myBtn">Read more</button>
+
   </div>
 
   <div class="column middle" style="background-color:#bbb;">
-    <h2>AI Predictions by DSTs</h2>
-    <p>The recommended treatment predicted by our DST is "<b style="color:darkgreen;">intravenous immunoglobulins (IVIG)</b>"</p>
+    <h2><center>AI Predictions</center></h2>
+    <p>The recommended treatment predicted by our DST: <b style="color:darkgreen;font-size:150%;">intravenous immunoglobulins (IVIG)</b></p>
   </div>
 
   <div class="column right" style="background-color:#ccc;">
-    <h2>Literature Evidence</h2>
+    <h2><center>Literature Evidence</center></h2>
     <p>Below table displays the matchable literatures from PubMed filtered by P (Patient Groups). The other two columns display P (Patient Group) and I (Interventions).</p>
     <table id="tables">
   <tr>
     <th>Literature Names</th>
-    <th>Patient Group</th>
-    <th>Interventions</th>
+    <th>Patient Group (P)</th>
+    <th>Interventions (I)</th>
   </tr>
   <tr>
     <td>Stanford Type A Acute Aortic Dissection with Persistent Left Superior Vena Cava in a Turner Syndrome Patient:Report of a Case</td>
@@ -164,6 +112,36 @@
 </table>
   </div>
 </div>
+
+
+<script>
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
 
 </body>
 </html>
