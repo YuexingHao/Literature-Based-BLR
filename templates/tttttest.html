@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<body>
+<table id="tables">
+    <tr>
+    {% for header in headings %}
+        <th>{{header}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in data %}
+    <tr>
+        {% set tempt_link=namespace(value=None) %}
+
+        {% for cell in row %}
+            {% if loop.index0 == 0 %}
+                {% set tempt_link.value = cell  %}
+            {% else %}
+                {% if (loop.index0 != 1) %}
+                    <td> {{cell}}</td>
+                {% else %}
+                    <td><a href={{ tempt_link.value }}>{{ cell }}</a></td>
+                {% endif %}
+            {% endif %}
+ 
+        {% endfor %}
+ 
+    </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>
