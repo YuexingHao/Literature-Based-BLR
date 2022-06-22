@@ -3,7 +3,9 @@
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,25 +13,25 @@
 <body id="mainbody">
 
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="main_page.html">Home</a>
-  <a href="case_one.html">Case 1</a>
-  <a href="case_two.html">Case 2</a>
-  <a href="case_two.html">Case 3</a>
-  <a href="case_four.html">Case 4</a>
-  <a href="case_five.html">Case 5</a>
-</div>
-
-  <div class="topnav">
-  <a><span onclick="openNav()">&#9776; Menu</span></a>
-  <a class="active" href="main_page.html">Home</a>
-  <a href="case_one.html">Case 1</a>
-  <a href="case_two.html">Case 2</a>
-  <a href="case_three.html">Case 3</a>
-  <a href="case_four.html">Case 4</a>
-  <a href="case_five.html">Case 5</a>
-</div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="main_page.html">Home</a>
+    <a href="case_one.html">Case 1</a>
+    <a href="case_two.html">Case 2</a>
+    <a href="case_three.html">Case 3</a>
+    <a href="case_four.html">Case 4</a>
+    <a href="case_five.html">Case 5</a>
+  </div>
+  
+    <div class="topnav">
+    <a><span onclick="openNav()">&#9776; Menu</span></a>
+    <a class="active" href="main_page.html">Home</a>
+    <a href="case_one.html">Case 1</a>
+    <a href="case_two.html">Case 2</a>
+    <a href="case_three.html">Case 3</a>
+    <a href="case_four.html">Case 4</a>
+    <a href="case_five.html">Case 5</a>
+  </div>
 
 <div class="mainheader">
   <h1>Literature-based Clinical Decision Support System</h1>

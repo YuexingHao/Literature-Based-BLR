@@ -1,11 +1,12 @@
-from flask import Flask, render_template
-app = Flask(__name__)
+from flask import Flask, render_template, redirect
+import pandas as pd
+import numpy as np
+app = Flask(__name__, template_folder="templates")
 
 @app.route('/')
+@app.route('/main_page.html', methods=["POST", "GET"])
 def main_page():
    return render_template('main_page.html')
-<<<<<<< Updated upstream
-=======
 
 @app.route('/case_one.html')
 def case_one():
@@ -27,6 +28,21 @@ def case_four():
 def case_five():
    return render_template('case_five.html')
 
+@app.route('/main_page.html')
+def back_main_page():
+   return render_template('main_page.html')
+
+
+def get_pd_df(path):
+    """
+    Read the CSV files into a Pandas DataFrame. 
+    
+    :param path: path of the csv files. 
+    :type path: str 
+    :return: a Pandas DataFrame of the inputed files. 
+    :rtype: Pandas DataFrame 
+    """
+    return pd.read_csv(path,index_col=0)
 
 @app.route('/test.html', methods=("POST", "GET"))
 def html_table():
@@ -43,6 +59,5 @@ def html_table():
    return render_template('test.html',  data=tuple(df_selected.itertuples(index=False, name=None)), headings=tuple(df_selected.iloc[:,1:].columns), zip=zip)
 # headings=tuple(df_selected.iloc[:,1:].columns)
 
->>>>>>> Stashed changes
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)

@@ -3,7 +3,9 @@
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,8 +35,10 @@
 
 <div class="header">
   <h1>Literature-based Clinical Decision Support System</h1>
-  <h3>Case One</h3>
+  <h3>Case Three</h3>
 </div>
+<br></br>
+
 <br></br>
 
 <div class="row">
@@ -82,34 +86,34 @@ Case study Reference: Chekroud, A. M., Lane, C. E., & Ross, D. A. (2017). Comput
   <div class="column right" style="background-color:#ccc;">
     <h2><center>Literature Evidence</center></h2>
     <p>Below table displays the matchable literatures from PubMed filtered by P (Patient Groups). The other two columns display P (Patient Group) and I (Interventions).</p>
-    <table id="tables">
-  <tr>
-    <th>Literature Names</th>
-    <th>Patient Group (P)</th>
-    <th>Interventions (I)</th>
-  </tr>
-  <tr>
-    <td>Stanford Type A Acute Aortic Dissection with Persistent Left Superior Vena Cava in a Turner Syndrome Patient:Report of a Case</td>
-    <td>The patient population of focus is people with Turner syndrome.</td>
-    <td>Unknown</td>
-  </tr>
-  <tr>
-    <td>Ultrasound-Guided Caudal Epidural Steroid Injection for Back Pain: A Case Report of Successful Emergency Department Management of Radicular Low Back Pain Symptoms.</td>
-    <td>The patient population of focus is people with chronic lumbar radiculopathy who present to the ED with acute low back and right lower-extremity pain.</td>
-    <td>Unknown</td>
-  </tr>
-  <tr>
-    <td>A systematic review and meta-analysis of the effectiveness and adverse events of gabapentin and pregabalin for sciatica pain.</td>
-    <td>The patient population of focus is adults with acute sciatica for a minimum of 1 week and a maximum of 1 year (at least moderate pain).</td>
-    <td>Patients were randomized to receive pregabalin, gabapentin, or placebo.</td>
-  </tr>
-  <tr>
-    <td>Failure of IVIG in steroid-responsive autoimmune glial fibrillary acidic protein astrocytopathy: A case report.</td>
-    <td>Our 45-year-old Asian female presented to the emergency department with an acute onset low-grade fever and back pain associated with headaches, intermittent confusion, vision changes, and hand tremors. A review of systems identified no inciting factors. Past medical history was significant only for chronic Hepatitis B without significant viral load. Neurological exam was significant for decreased visual acuity, high-frequency hand tremor, and gait imbalance.</td>
-    <td>Patients were randomized to receive either high-dose steroids or intravenous immunoglobulins (IVIG) as their first line of treatment.</td>
-  </tr>
-  </tr>
-</table>
+
+<center>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h1>Literature 1</h1> 
+      <h4>Stanford Type A Acute Aortic Dissection with Persistent Left Superior Vena Cava in a Turner Syndrome Patient:Report of a Case</h4> 
+    </div>
+    <div class="flip-card-back">
+      <h2>Literature 1</h2> 
+      <p>P: The patient population of focus is people with Turner syndrome.</p>
+    </div>
+  </div>
+</div>
+<br></br>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h1>Literature 2</h1> 
+      <h4>Ultrasound-Guided Caudal Epidural Steroid Injection for Back Pain: A Case Report of Successful Emergency Department Management of Radicular Low Back Pain Symptoms.</h4> 
+    </div>
+    <div class="flip-card-back">
+      <h2>Literature 2</h2> 
+      <p>P: The patient population of focus is people with chronic lumbar radiculopathy who present to the ED with acute low back and right lower-extremity pain.</p>
+    </div>
+  </div>
+</div>
+</center>
   </div>
 </div>
 
