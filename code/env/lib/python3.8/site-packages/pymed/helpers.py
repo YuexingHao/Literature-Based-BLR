@@ -17,7 +17,7 @@ def batches(iterable: list, n: int = 1) -> list:
 
     # Start a loop over the iterable
     for index in range(0, length, n):
-
+        # print(index)
         # Create a new iterable by slicing the original
         yield iterable[index : min(index + n, length)]
 

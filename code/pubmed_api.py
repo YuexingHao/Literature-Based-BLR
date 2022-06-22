@@ -1,9 +1,12 @@
 from pymed import PubMed
+import os
+import openai
 import datetime
 import requests
 import itertools
 import pandas as pd
 
+from IPython.display import display, HTML
 import xml.etree.ElementTree as xml
 
 from typing import Union
@@ -11,18 +14,15 @@ from pymed.helpers import batches
 from pymed.article import PubMedArticle
 from pymed.book import PubMedBookArticle
 
-#@title OpenAI API Key
-# api_key = "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" #@param {type:"string"}
-api_key="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" #for Kexin
-import os
-import openai
-from IPython.display import display, HTML
-
-openai.api_key = api_key #input("Enter your OpenAI API Key:")
-
 #@title Imports, creating some displays, and the `Conversation` class.
 import json
 import math
+
+#@title OpenAI API Key
+api_key="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" # TODO: Key for Kexin
+
+openai.api_key = api_key #input("Enter your OpenAI API Key:")
+
 
 class Conversation:
   def __init__(self, init=""):
@@ -154,9 +154,6 @@ def summarize(abstract):
   return c1_summary
   # return hl_substring(abstract, spans)
 
-from pymed import PubMed
-import json
-import math
 
 # Create a PubMed object that GraphQL can use to query
 # Note that the parameters are not required but kindly requested by PubMed Central
@@ -165,9 +162,9 @@ pubmed = PubMed(tool="MyTool", email="my@email.address")
 
 # Create a GraphQL query in plain text
 
-query = '(Old adults + acute LBP + Low Back Pain)' #TODO: Change it based on our previous meeting
+query = '(Old adults + acute LBP + Low Back Pain)' #TODO: Change it based on each search
 # Execute the query against the API
-results = pubmed.query(query, max_results=20) #TO CHANGE MAX_RESULTS 
+results = pubmed.query(query, max_results=10) #TO CHANGE MAX_RESULTS 
 
 author_ls=[]
 affliation_ls=[]
@@ -190,8 +187,11 @@ for article in results:
         keyword = '", "'.join(article.keywords)
     publication_date = article.publication_date
     abstract = article.abstract
-    sum_abst=summarize(abstract)
-
+    if abstract is None:
+      continue  # Filtered out articles without abstract
+    else:
+      sum_abst=summarize(abstract)
+    
     if keyword is None:
         keyword=""
     
@@ -220,7 +220,6 @@ for article in results:
 d={'Title':title_ls,'Article id':art_id_ls, 'Publication Date':pub_ls, \
    'Authors':author_ls, 'Affliations':affliation_ls, 'One Sentence Summary':summary_ls, 'Abstract':abst_ls}
 df=pd.DataFrame(d)
-
 abstract = Conversation(df["Abstract"])
 
 # Try question answering
