@@ -15,6 +15,7 @@ class PubMedBookArticle(object):
         "pubmed_id",
         "title",
         "abstract",
+        "keywords",
         "publication_date",
         "authors",
         "copyrights",
@@ -53,6 +54,9 @@ class PubMedBookArticle(object):
         path = ".//BookTitle"
         return getContent(element=xml_element, path=path)
 
+    def _extractKeywords(self: object, xml_element: TypeVar("Element")) -> str:
+        return ""
+    
     def _extractAbstract(self: object, xml_element: TypeVar("Element")) -> str:
         path = ".//AbstractText"
         return getContent(element=xml_element, path=path)
@@ -117,6 +121,7 @@ class PubMedBookArticle(object):
         self.pubmed_id = self._extractPubMedId(xml_element)
         self.title = self._extractTitle(xml_element)
         self.abstract = self._extractAbstract(xml_element)
+        self.keywords = self._extractKeywords(xml_element)
         self.copyrights = self._extractCopyrights(xml_element)
         self.doi = self._extractDoi(xml_element)
         self.isbn = self._extractIsbn(xml_element)

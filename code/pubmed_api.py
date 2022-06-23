@@ -19,7 +19,7 @@ import json
 import math
 
 #@title OpenAI API Key
-api_key="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" # TODO: Key for Kexin
+api_key="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" # TODO: Key for Kexin
 
 openai.api_key = api_key #input("Enter your OpenAI API Key:")
 
@@ -90,15 +90,20 @@ def lcs(S,T):
                     lcs_set_end = i+1
                 elif c == longest:
                     lcs_set.add(S[i-c+1:i+1])
-    return (list(lcs_set)[0],int(lcs_set_start),int(lcs_set_end))
+                    
+    if list(lcs_set) == []:
+      return (list(lcs_set),int(lcs_set_start),int(lcs_set_end))
+    else:
+      return (list(lcs_set)[0],int(lcs_set_start),int(lcs_set_end))
 
 
 def all_lcs(abs,summ):
+  # print("ABSTRACT:", abs)
   abs = abs.lower()
   summ = summ.lower()
   lcs_set = []
   span_set = [] # location of the summary texts in abstract
-
+  
   while len(summ.strip().split(" ")) >= 5:
     # while there are three words remaining in the summary
     lcs_i, j, k = lcs(abs,summ)
@@ -162,9 +167,10 @@ pubmed = PubMed(tool="MyTool", email="my@email.address")
 
 # Create a GraphQL query in plain text
 
-query = '(Old adults + acute LBP + Low Back Pain)' #TODO: Change it based on each search
+# query = '(Old adults + acute LBP + Low Back Pain)' #TODO: Change it based on each search
+query= '(Old adults + major depressive disorder + generalized anxiety disorder)'
 # Execute the query against the API
-results = pubmed.query(query, max_results=10) #TO CHANGE MAX_RESULTS 
+results = pubmed.query(query, max_results=11) #TO CHANGE MAX_RESULTS 
 
 author_ls=[]
 affliation_ls=[]
@@ -173,13 +179,13 @@ art_id_ls=[]
 pub_ls=[]
 title_ls=[]
 abst_ls=[]
-summary_ls=[]
+# summary_ls=[]
 
 # Loop over the retrieved articles
 for article in results:
     keyword=None
     # Extract and format information from the article
-    article_id = article.pubmed_id.split('\n')[0] # FIX SOME WEIRD ERROR WHEN PUBMED_ID AUTO RETURNNED A LIST OF PUBMEDID
+    article_id = article.pubmed_id.split('\n')[0] # FIX SOME WEIRD ERROR WHEN PUBMED_ID AUTO RETURNNED A LIST OF PUBMEDID  
     title = article.title
     if article.keywords:
         if None in article.keywords:
@@ -187,10 +193,16 @@ for article in results:
         keyword = '", "'.join(article.keywords)
     publication_date = article.publication_date
     abstract = article.abstract
-    if abstract is None:
-      continue  # Filtered out articles without abstract
-    else:
-      sum_abst=summarize(abstract)
+    if abstract == '':
+      response=requests.get('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id='+str(article_id))
+      strResponse=response.text #turn byte to json
+      abstract=strResponse.split('abstract')[1].split('",')[0]
+       
+    # if abstract is None:
+    #   # continue  # Filtered out articles without abstract
+    #   sum_abst=""
+    # else:
+    #   sum_abst=summarize(abstract)
     
     if keyword is None:
         keyword=""
@@ -198,7 +210,18 @@ for article in results:
     cur_author_ls=[]
     cur_aff_ls=[]     
     for d in article.authors:
-        name=d.get('firstname')+' '+ d.get('lastname')
+        first_name=d.get('firstname')
+        last_name=d.get('lastname')
+        if first_name is None:
+          if last_name is None:
+            name='Nan'
+          else:
+            name=last_name
+        else:
+          if last_name is None:
+            name=first_name
+          else:
+            name=first_name+' '+ last_name
         aff=d.get('affiliation')
         if aff is None:
           aff='UNKNOWN'
@@ -214,36 +237,38 @@ for article in results:
     pub_ls.append(publication_date)
     title_ls.append(title)
     abst_ls.append(abstract)
-    summary_ls.append(sum_abst)
+    # summary_ls.append(sum_abst)
 
 
+# d={'Title':title_ls,'Article id':art_id_ls, 'Publication Date':pub_ls, \
+#    'Authors':author_ls, 'Affliations':affliation_ls, 'One Sentence Summary':summary_ls, 'Abstract':abst_ls}
 d={'Title':title_ls,'Article id':art_id_ls, 'Publication Date':pub_ls, \
-   'Authors':author_ls, 'Affliations':affliation_ls, 'One Sentence Summary':summary_ls, 'Abstract':abst_ls}
+   'Authors':author_ls, 'Affliations':affliation_ls, 'Abstract':abst_ls}
 df=pd.DataFrame(d)
-abstract = Conversation(df["Abstract"])
+# abstract = Conversation(df["Abstract"])
 
-# Try question answering
-def PICO(sentence, query_type, qna_prompt):
-  if query_type=='Population':
-    q="\n\nQ: What is the patient population of focus? Please answer this question in detail.\nA:"
-  elif query_type=='Clinical Condition':
-    q="\n\nQ: What is the clinical condition or disease of focus in the texts above?\nA:"
-  elif query_type=='Intervention':
-    q="\n\nQ: Patients were randomrized to receive what treatments\nA:"
-  elif query_type=='Patient Outcome':
-    q="\n\nQ: What are the patient health outcomes of focus in the texts above?\nA:"
-  elif query_type=='Study Outcome':
-    q="\n\nQ: What is the study outcome? Please answer the question in detail.\nA:"
-  return sentence.query(q, qna_prompt)
-# Add a col of literature links 
-def add_link(id):
-  new_id=id.split('\n')[0]
-  return "https://pubmed.ncbi.nlm.nih.gov/{0}/".format(new_id)
+# # Try question answering
+# def PICO(sentence, query_type, qna_prompt):
+#   if query_type=='Population':
+#     q="\n\nQ: What is the patient population of focus? Please answer this question in detail.\nA:"
+#   elif query_type=='Clinical Condition':
+#     q="\n\nQ: What is the clinical condition or disease of focus in the texts above?\nA:"
+#   elif query_type=='Intervention':
+#     q="\n\nQ: Patients were randomrized to receive what treatments\nA:"
+#   elif query_type=='Patient Outcome':
+#     q="\n\nQ: What are the patient health outcomes of focus in the texts above?\nA:"
+#   elif query_type=='Study Outcome':
+#     q="\n\nQ: What is the study outcome? Please answer the question in detail.\nA:"
+#   return sentence.query(q, qna_prompt)
+# # Add a col of literature links 
+# def add_link(id):
+#   new_id=id.split('\n')[0]
+#   return "https://pubmed.ncbi.nlm.nih.gov/{0}/".format(new_id)
 
 
-query_list=['Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome']
-for i in query_list:
-  df[str(i)]=df.apply(lambda row: PICO(Conversation(row['Abstract']), i, qna_prompt), axis=1)
-df['link']=df.apply(lambda row: add_link(row['Article id']), axis=1) #add article link
+# query_list=['Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome']
+# for i in query_list:
+#   df[str(i)]=df.apply(lambda row: PICO(Conversation(row['Abstract']), i, qna_prompt), axis=1)
+# df['link']=df.apply(lambda row: add_link(row['Article id']), axis=1) #add article link
 
-df.to_csv('../datasets/lbp.csv')
+df.to_csv('../datasets/mdd_gad.csv')
