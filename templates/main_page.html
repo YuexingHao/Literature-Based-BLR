@@ -3,9 +3,11 @@
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
-
+<link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,25 +15,25 @@
 <body id="mainbody">
 
 
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="main_page.html">Home</a>
-    <a href="case_one.html">Case 1</a>
-    <a href="case_two.html">Case 2</a>
-    <a href="case_three.html">Case 3</a>
-    <a href="case_four.html">Case 4</a>
-    <a href="case_five.html">Case 5</a>
-  </div>
-  
-    <div class="topnav">
-    <a><span onclick="openNav()">&#9776; Menu</span></a>
-    <a class="active" href="main_page.html">Home</a>
-    <a href="case_one.html">Case 1</a>
-    <a href="case_two.html">Case 2</a>
-    <a href="case_three.html">Case 3</a>
-    <a href="case_four.html">Case 4</a>
-    <a href="case_five.html">Case 5</a>
-  </div>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_two.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
+
+  <div class="topnav">
+  <a><span onclick="openNav()">&#9776; Menu</span></a>
+  <a class="active" href="main_page.html">Home</a>
+  <a href="case_one.html">Case 1</a>
+  <a href="case_two.html">Case 2</a>
+  <a href="case_three.html">Case 3</a>
+  <a href="case_four.html">Case 4</a>
+  <a href="case_five.html">Case 5</a>
+</div>
 
 <div class="mainheader">
   <h1>Literature-based Clinical Decision Support System</h1>
@@ -52,28 +54,75 @@
 </nav>
 
 <h3><center>Field 1: Palliative Care</center></h3>
-<a href="case_one.html" title="Case One Page"><button class="button button1">Case One</button></a>
-<a href="case_one.html" title="Case One Page"><button class="button button1">Case Two</button></a>
-<a href="case_one.html" title="Case One Page"><button class="button button1">Case Three</button></a>
+
+<!-- Case One: Trigger the modal with a button -->
+  <button type="button" class="button button1" data-toggle="modal" data-target="#myModal">Case One</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center>Case One Details</center></h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:56%;">A 64-year-old woman was admitted to this hospital with cognitive impairment, headache, and memory loss. The patient had been well until 6 weeks before admission, when respiratory symptoms developed. Testing of a nasopharyngeal swab for severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA was negative. At around the same time, coworkers observed a decline in the patient’s performance at work. The patient noticed that she was having difficulty operating computers and was forgetting her personal passwords. The patient was evaluated at another hospital. Although she reported recent confusion and changes in cognitive performance, the examination at that time — including a neurologic examination with assessment of orientation, speech, and memory recall after 5 and 20 minutes — was unremarkable. The patient was referred for an outpatient neurologic evaluation. One week later (5 weeks before admission), severe headache developed suddenly, along with blurred vision, dizziness, and nausea. After the administration of ondansetron, the blurred vision, dizziness, and nausea resolved; after the administration of nonsteroidal antiinflammatory drugs, the headache became less severe, with mild pain and intermittent episodes of more severe pain. Three weeks before admission, the patient was seen in a neurology clinic affiliated with the other hospital. She had difficulty recalling the history of her symptoms. On examination, she was oriented to place and person only and was unable to perform serial sevens calculations or to spell “world” backward. The remainder of the examination was unremarkable. The complete blood count with differential count and test results for liver and kidney function were normal, as were blood levels of electrolytes, glucose, thiamine, and cobalamin. Tests for syphilis and human immunodeficiency virus infection were negative; other laboratory test results are shown in Table 1. An electroencephalogram (EEG) showed no distinct epileptiform activity. Topiramate was prescribed for a working diagnosis of complex migraine.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="case_one.html"><button type="button" class="btn btn-default" >Proceed</button></a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Case Two: Trigger the modal with a button -->
+  <button type="button" class="button button1" data-toggle="modal" data-target="#myModal">Case Two</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center>Case Two Details</center></h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:56%;">A 64-year-old woman was admitted to this hospital with cognitive impairment, headache, and memory loss. The patient had been well until 6 weeks before admission, when respiratory symptoms developed. Testing of a nasopharyngeal swab for severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA was negative. At around the same time, coworkers observed a decline in the patient’s performance at work. The patient noticed that she was having difficulty operating computers and was forgetting her personal passwords. The patient was evaluated at another hospital. Although she reported recent confusion and changes in cognitive performance, the examination at that time — including a neurologic examination with assessment of orientation, speech, and memory recall after 5 and 20 minutes — was unremarkable. The patient was referred for an outpatient neurologic evaluation. One week later (5 weeks before admission), severe headache developed suddenly, along with blurred vision, dizziness, and nausea. After the administration of ondansetron, the blurred vision, dizziness, and nausea resolved; after the administration of nonsteroidal antiinflammatory drugs, the headache became less severe, with mild pain and intermittent episodes of more severe pain. Three weeks before admission, the patient was seen in a neurology clinic affiliated with the other hospital. She had difficulty recalling the history of her symptoms. On examination, she was oriented to place and person only and was unable to perform serial sevens calculations or to spell “world” backward. The remainder of the examination was unremarkable. The complete blood count with differential count and test results for liver and kidney function were normal, as were blood levels of electrolytes, glucose, thiamine, and cobalamin. Tests for syphilis and human immunodeficiency virus infection were negative; other laboratory test results are shown in Table 1. An electroencephalogram (EEG) showed no distinct epileptiform activity. Topiramate was prescribed for a working diagnosis of complex migraine.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="case_two.html"><button type="button" class="btn btn-default" >Proceed</button></a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <h3><center>Field 2: Psychiatry</center></h3>
 
 <center>
-<div class="card">
-  <div class="container">
-    <h4><b>Case One DST: Aifred Health</b></h4> 
-    <p>Keywords: major depressive episode; somatic and psychological anxiety</p> 
-  <a href="case_two.html" title="Case Two Page"><button class="button button2">Case One</button></a>
-  </div>
-</div>
+<!-- Case Three: Trigger the modal with a button -->
+  <button type="button" class="button button1" data-toggle="modal" data-target="#myModal">Case Three</button>
 
-<div class="card">
-  <div class="container">
-    <h4><b>Case Two DST: Spring Health</b></h4> 
-    <p>Keywords: major depressive episode; somatic and psychological anxiety</p> 
-<a href="case_two.html" title="Case Two Page"><button class="button button2">Case Two</button></a>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center>Case Three Details</center></h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:56%;">A 64-year-old woman was admitted to this hospital with cognitive impairment, headache, and memory loss. The patient had been well until 6 weeks before admission, when respiratory symptoms developed. Testing of a nasopharyngeal swab for severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA was negative. At around the same time, coworkers observed a decline in the patient’s performance at work. The patient noticed that she was having difficulty operating computers and was forgetting her personal passwords. The patient was evaluated at another hospital. Although she reported recent confusion and changes in cognitive performance, the examination at that time — including a neurologic examination with assessment of orientation, speech, and memory recall after 5 and 20 minutes — was unremarkable. The patient was referred for an outpatient neurologic evaluation. One week later (5 weeks before admission), severe headache developed suddenly, along with blurred vision, dizziness, and nausea. After the administration of ondansetron, the blurred vision, dizziness, and nausea resolved; after the administration of nonsteroidal antiinflammatory drugs, the headache became less severe, with mild pain and intermittent episodes of more severe pain. Three weeks before admission, the patient was seen in a neurology clinic affiliated with the other hospital. She had difficulty recalling the history of her symptoms. On examination, she was oriented to place and person only and was unable to perform serial sevens calculations or to spell “world” backward. The remainder of the examination was unremarkable. The complete blood count with differential count and test results for liver and kidney function were normal, as were blood levels of electrolytes, glucose, thiamine, and cobalamin. Tests for syphilis and human immunodeficiency virus infection were negative; other laboratory test results are shown in Table 1. An electroencephalogram (EEG) showed no distinct epileptiform activity. Topiramate was prescribed for a working diagnosis of complex migraine.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="case_three.html"><button type="button" class="btn btn-default" >Proceed</button></a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 </center>
 
 </div>
@@ -100,11 +149,9 @@ function openNav() {
   document.getElementById("main").style.marginLeft = "250px";
 }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
 </script>
+<br></br>
+<br></br>
 
 </body>
 
