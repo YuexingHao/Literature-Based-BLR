@@ -3,16 +3,15 @@
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
-
+<link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+
+
 <body>
-
-
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="main_page.html">Home</a>
@@ -37,54 +36,84 @@
   <h1>Literature-based Clinical Decision Support System</h1>
   <h3>Case One</h3>
 </div>
-<br></br>
 
 <div class="row">
-  <div class="column left" style="background-color:#aaa;">
+  <div class="column left" style="background-color:#ddd;">
     <h2><center>Patient Variables</center></h2>
     <table id="tables">
   <tr>
     <th>Labels</th>
-    <th>Conditions</th>
+    <th>Information</th>
   </tr>
   <tr>
     <td>One sentence Summary</td>
     <td>The patient is experiencing a major depressive episode and has prominent feelings of somatic and psychological anxiety.</td>
   </tr>
   <tr>
-    <td>Patient Group (P)</td>
-    <td>A 55-year-old woman</td>
+    <td>Age</td>
+    <td>64</td>
   </tr>
   <tr>
-    <td>Interventions (I)</td>
-    <td>Has prominent feelings of somatic and psychological anxiety that she did not experienc last time</td>
+    <td>Gender</td>
+    <td>Female</td>
   </tr>
   <tr>
-    <td>Comparator (C)</td>
+    <td>Symptoms</td>
+    <td>Cognitive impairment, headache, and memory loss</td>
+  </tr>
+  <tr>
+    <td>Family History</td>
     <td>a major depressive episode</td>
   </tr>
   <tr>
-    <td>Outcomes (O)</td>
-    <td>Her condition is less acute, and a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.</td>
+    <td>Allergies</td>
+    <td>Allergy to amoxicillin–clavulanate with an unknown reaction</td>
+  </tr>
+  <tr>
+    <td>Medications</td>
+    <td>Atorvastatin, levothyroxine, sertraline, vitamin B12, and cholecalciferol</td>
+  </tr>
+  <tr>
+    <td>Examination Result</td>
+    <td>The temperature was 36.7°C, the blood pressure 105/51 mm Hg, the heart rate 56 beats per minute, the respiratory rate 16 breaths per minute, and the oxygen saturation 96% while she was breathing ambient air. The body-mass index (the weight in kilograms divided by the square of the height in meters) was 32.4. </td>
+  </tr>
+  <tr>
+    <td>Other Info</td>
+    <td>Former smoker with a 40 pack-year history, and she had consumed four alcoholic beverages per week before the onset of the current illness</td>
+  </tr>
+  <tr>
+    <td>Pathological Diagnosis</td>
+    <td>Cerebral amyloid angiopathy–related inflammation.</td>
   </tr>
 </table>
 <h3>The full description of case one</h3>
-<p>A 55-year-old woman presents seeking treatment with clear symptoms of a major depressive episode. This is her third such episode. She reports that sertraline worked well for her the first time. The second time, however, it made her dizzy and she had to discontinue; she eventually responded well <span id="dots">...</span><span id="more"> to bupropion. She expresses a preference for medication over psychotherapy but is not sure which one to try. She tries bupropion and it worked last time, but in exploring her current symptoms it is clear that she has prominent feelings of somatic and psychological anxiety that she did not experience last time. Overall, her condition is less acute, and you recall a meta-analysis suggesting that anti-depressants are less effective in milder cases of depression. She experienced trauma during adolescence, has been unable to fall asleep in the evenings, and has extreme feelings of worthlessness.<br><br>
+<p>A 64-year-old woman was admitted to this hospital with cognitive impairment, headache, and memory loss. The patient had been well until 6 weeks before admission, when respiratory symptoms developed. Testing of a nasopharyngeal swab for severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA was negative. At around the same time, coworkers observed a decline in the patient’s performance at work. The patient noticed that she was having difficulty operating computers and was forgetting her personal passwords. The patient was evaluated at another hospital. Although she reported recent confusion and changes in cognitive performance, the examination at that time — including a neurologic examination with assessment of orientation, speech, and memory recall after 5 and 20 minutes — was unremarkable. The patient was referred for an outpatient neurologic evaluation. One week later (5 weeks before admission), severe headache developed suddenly, along with blurred vision, dizziness, and nausea. After the administration of ondansetron, the blurred vision, dizziness, and nausea resolved; after the administration of nonsteroidal antiinflammatory drugs, the headache became less severe, with mild pain and intermittent episodes of more severe pain. Three weeks before admission, the patient was seen in a neurology clinic affiliated with the other hospital. She had difficulty recalling the history of her symptoms. On examination, she was oriented to place and person only and was unable to perform serial sevens calculations or to spell “world” backward. The remainder of the examination was unremarkable. The complete blood count with differential count and test results for liver and kidney function were normal, as were blood levels of electrolytes, glucose, thiamine, and cobalamin. Tests for syphilis and human immunodeficiency virus infection were negative... An electroencephalogram (EEG) showed no distinct epileptiform activity. Topiramate was prescribed for a working diagnosis of complex migraine. <span id="dots">...</span><span id="more"> <br><br>
 
-Case study Reference: Chekroud, A. M., Lane, C. E., & Ross, D. A. (2017). Computational Psychiatry: Embracing Uncertainty and Focusing on Individuals, Not Averages. Biological psychiatry, 82(6), e45–e47. https://doi.org/10.1016/j.biopsych.2017.07.011</span></p>
+Case Study Reference: https://www.nejm.org/doi/full/10.1056/NEJMcpc2103460, July 22, 2021.</span></p>
 <button onclick="myFunction()" id="myBtn">Read more</button>
 
   </div>
 
-  <div class="column middle" style="background-color:#bbb;">
-    <h2><center>AI Predictions</center></h2>
-    <p>The recommended treatment predicted by our DST: <b style="color:darkgreen;font-size:150%;">intravenous immunoglobulins (IVIG)</b></p>
-  </div>
+  <div class="column right">
+    
+    <h2><center>DST Recommendations</center></h2>
 
-  <div class="column right" style="background-color:#ccc;">
+    <label class="container">intravenous methylprednisolone
+      <input type="radio" checked="checked" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">tapered course of oral prednisone
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">three monthly doses of cyclophosphamide and a slowly tapered course of oral prednisone
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    
     <h2><center>Literature Evidence</center></h2>
     <p>Below table displays the matchable literatures from PubMed filtered by P (Patient Groups). The other two columns display P (Patient Group) and I (Interventions).</p>
-    <table id="tables">
+    <table id="tables" style="font-size: 60%;">
   <tr>
     <th>Literature Names</th>
     <th>Patient Group (P)</th>
