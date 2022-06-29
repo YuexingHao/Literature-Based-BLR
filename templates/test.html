@@ -4,7 +4,7 @@
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,15 +79,29 @@
 
    
   <!-- XXXXXXXXXXXXXX MIDDLE COLUMN XXXXXXXXXXXXXXXX-->
-  <div class="column middle" style="background-color:#bbb;">
-    <h2><center>AI Predictions</center></h2>
-    <p>The recommended treatment predicted by our DST: <b style="color:darkgreen;font-size:150%;">intravenous immunoglobulins (IVIG)</b></p>
-  </div> <!-- XXXXXXXXXXXXXX   MIDDLE COLUMN END  XXXXXXXXXXXXXXXX-->
+
+  <!-- XXXXXXXXXXXXXX   MIDDLE COLUMN END  XXXXXXXXXXXXXXXX-->
 
 
 
   <!-- XXXXXXXXXXXXXX RIGHT COLUMN XXXXXXXXXXXXXXXX-->
   <div class="column right" style="background-color:#ccc;">
+    <h2><center>DST Recommendations</center></h2>
+
+    <label class="container">intravenous methylprednisolone
+      <input type="radio" checked="checked" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">tapered course of oral prednisone
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">three monthly doses of cyclophosphamide and a slowly tapered course of oral prednisone
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+
+
     <h2><center>Literature Evidence</center></h2>
     <p>Below table displays the matchable literatures from PubMed filtered by P (Patient Groups). The other two columns display P (Patient Group) and I (Interventions).</p>
     <!-- {% for table in tables %}
@@ -95,7 +109,7 @@
             {{ table|safe }}
     {% endfor %} -->
 
-    <table id="tables">
+    <table id="tables" style="font-size: 60%; font-family: 'Roboto';">
       <tr>
       {% for header in headings %}
           <th>{{header}}</th>

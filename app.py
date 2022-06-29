@@ -51,7 +51,7 @@ def html_table():
    ###['Title','Article id','Publication Date','Authors','Affliations','One Sentence Summary','Abstract','Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome','link']
    col_to_show = ['link','Title'
                   ,'Population','Clinical Condition','Intervention',
-                  'Study Outcome'
+                  'Study Outcome','One Sentence Summary'
                   ]
    df_selected = df[col_to_show].reset_index(drop=True).head(5)
 
