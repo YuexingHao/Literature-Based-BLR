@@ -19,7 +19,7 @@ import json
 import math
 
 #@title OpenAI API Key
-api_key="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" # TODO: Key for Kexin
+api_key="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" # TODO: Key for Kexin
 
 openai.api_key = api_key #input("Enter your OpenAI API Key:")
 
@@ -35,7 +35,7 @@ class Conversation:
         engine="text-davinci-002",
         prompt=self.prompt+text,
         temperature=0,
-        max_tokens=64,
+        max_tokens=100, ## TODO: SETTING=num of one-sent summary length
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
@@ -168,9 +168,9 @@ pubmed = PubMed(tool="MyTool", email="my@email.address")
 # Create a GraphQL query in plain text
 
 # query = '(Old adults + acute LBP + Low Back Pain)' #TODO: Change it based on each search
-query= '(Old adults + major depressive disorder + generalized anxiety disorder)'
+query= 'Cognitive impairment, headache, memory loss'
 # Execute the query against the API
-results = pubmed.query(query, max_results=11) #TO CHANGE MAX_RESULTS 
+results = pubmed.query(query, max_results=20) #TO CHANGE MAX_RESULTS 
 
 author_ls=[]
 affliation_ls=[]
@@ -179,7 +179,7 @@ art_id_ls=[]
 pub_ls=[]
 title_ls=[]
 abst_ls=[]
-# summary_ls=[]
+summary_ls=[]
 
 # Loop over the retrieved articles
 for article in results:
@@ -198,11 +198,12 @@ for article in results:
       strResponse=response.text #turn byte to json
       abstract=strResponse.split('abstract')[1].split('",')[0]
        
-    # if abstract is None:
-    #   # continue  # Filtered out articles without abstract
-    #   sum_abst=""
-    # else:
-    #   sum_abst=summarize(abstract)
+    if abstract is None:
+      # continue  # Filtered out articles without abstract
+      abstract=""
+      sum_abst=""
+    else:
+      sum_abst=summarize(abstract)
     
     if keyword is None:
         keyword=""
@@ -237,38 +238,37 @@ for article in results:
     pub_ls.append(publication_date)
     title_ls.append(title)
     abst_ls.append(abstract)
-    # summary_ls.append(sum_abst)
+    summary_ls.append(sum_abst)
 
 
-# d={'Title':title_ls,'Article id':art_id_ls, 'Publication Date':pub_ls, \
-#    'Authors':author_ls, 'Affliations':affliation_ls, 'One Sentence Summary':summary_ls, 'Abstract':abst_ls}
 d={'Title':title_ls,'Article id':art_id_ls, 'Publication Date':pub_ls, \
-   'Authors':author_ls, 'Affliations':affliation_ls, 'Abstract':abst_ls}
+   'Authors':author_ls, 'Affliations':affliation_ls, 'One Sentence Summary':summary_ls, 'Abstract':abst_ls}
+
 df=pd.DataFrame(d)
-# abstract = Conversation(df["Abstract"])
-
-# # Try question answering
-# def PICO(sentence, query_type, qna_prompt):
-#   if query_type=='Population':
-#     q="\n\nQ: What is the patient population of focus? Please answer this question in detail.\nA:"
-#   elif query_type=='Clinical Condition':
-#     q="\n\nQ: What is the clinical condition or disease of focus in the texts above?\nA:"
-#   elif query_type=='Intervention':
-#     q="\n\nQ: Patients were randomrized to receive what treatments\nA:"
-#   elif query_type=='Patient Outcome':
-#     q="\n\nQ: What are the patient health outcomes of focus in the texts above?\nA:"
-#   elif query_type=='Study Outcome':
-#     q="\n\nQ: What is the study outcome? Please answer the question in detail.\nA:"
-#   return sentence.query(q, qna_prompt)
-# # Add a col of literature links 
-# def add_link(id):
-#   new_id=id.split('\n')[0]
-#   return "https://pubmed.ncbi.nlm.nih.gov/{0}/".format(new_id)
 
 
-# query_list=['Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome']
-# for i in query_list:
-#   df[str(i)]=df.apply(lambda row: PICO(Conversation(row['Abstract']), i, qna_prompt), axis=1)
-# df['link']=df.apply(lambda row: add_link(row['Article id']), axis=1) #add article link
+# Try question answering
+def PICO(sentence, query_type, qna_prompt):
+  if query_type=='Population':
+    q="\n\nQ: What is the patient population of focus? Please answer this question in detail.\nA:"
+  elif query_type=='Clinical Condition':
+    q="\n\nQ: What is the clinical condition or disease of focus in the texts above?\nA:"
+  elif query_type=='Intervention':
+    q="\n\nQ: Patients were randomrized to receive what treatments\nA:"
+  elif query_type=='Patient Outcome':
+    q="\n\nQ: What are the patient health outcomes of focus in the texts above?\nA:"
+  elif query_type=='Study Outcome':
+    q="\n\nQ: What is the study outcome? Please answer the question in detail.\nA:"
+  return sentence.query(q, qna_prompt)
+# Add a col of literature links 
+def add_link(id):
+  new_id=id.split('\n')[0]
+  return "https://pubmed.ncbi.nlm.nih.gov/{0}/".format(new_id)
 
-df.to_csv('../datasets/mdd_gad.csv')
+
+query_list=['Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome']
+for i in query_list:
+  df[str(i)]=df.apply(lambda row: PICO(Conversation(row['Abstract']), i, qna_prompt), axis=1)
+df['link']=df.apply(lambda row: add_link(row['Article id']), axis=1) #add article link
+
+df.to_csv('../datasets/cognitive_impair.csv')

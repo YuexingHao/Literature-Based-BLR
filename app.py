@@ -46,18 +46,16 @@ def get_pd_df(path):
 
 @app.route('/test.html', methods=("POST", "GET"))
 def html_table():
-   df=get_pd_df('datasets/lbp.csv')
+   df=get_pd_df('datasets/cognitive_impair.csv')
    #### TOTAL COLUMN NAMES SELECTION
    ###['Title','Article id','Publication Date','Authors','Affliations','One Sentence Summary','Abstract','Population','Clinical Condition','Intervention','Patient Outcome','Study Outcome','link']
-   col_to_show = ['link','Title'
-                  ,'Population','Clinical Condition','Intervention',
-                  'Study Outcome','One Sentence Summary'
+   col_to_show = ['link','Literature Names','First Author Name'
+                  ,'One Sentence Summary'
                   ]
-   df_selected = df[col_to_show].reset_index(drop=True).head(5)
+   df_selected = df[col_to_show].reset_index(drop=True)
 
    # data = df_selected.to_dict()
    return render_template('test.html',  data=tuple(df_selected.itertuples(index=False, name=None)), headings=tuple(df_selected.iloc[:,1:].columns), zip=zip)
-# headings=tuple(df_selected.iloc[:,1:].columns)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
